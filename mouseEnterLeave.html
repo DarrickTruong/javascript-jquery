@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body {
+        padding: 30px;
+        display: inline-grid;
+        grid-gap: 30px;
+        grid-template-columns: repeat( 3, 1fr);
+        }
+
+        img {
+        width: 200px;
+        height: 200px; 
+        }
+
+        img.p1 {
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+        img.p2 {
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+        img.p3 {
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+        img.p4 {
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+        img.p5 {
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+        img.p6 {
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+    </style>
+  </head>
+  <body>
+    <img class="p1" src="img/11.jpg"></img>
+    <img class="p2" src="img/22.jpg"></img>
+    <img class="p3" src="img/33.jpg"></img>
+    <img class="p4" src="img/44.jpg"></img>
+    <img class="p5" src="img/55.jpg"></img>
+    <img class="p6" src="img/66.jpg"></img>
+    
+    <script>
+
+      let imgDict = new Object();
+      imgDict = {
+          'p1' : {
+              'over': "img/1.jpg",
+              'out': "img/11.jpg"
+          },
+          'p2' : {
+              'over': "img/2.jpg",
+              'out': "img/22.jpg"
+          },
+          'p3' : {
+              'over': "img/3.jpg",
+              'out': "img/33.jpg"
+          },
+          'p4' : {
+              'over': "img/4.jpg",
+              'out': "img/44.jpg"
+          },
+          'p5' : {
+              'over': "img/5.jpg",
+              'out': "img/55.jpg"
+          },
+          'p6' : {
+              'over': "img/6.jpg",
+              'out': "img/66.jpg"
+          }
+      }
+    
+      $("img").mouseover(
+        function() {
+          $(this).attr("src", imgDict[$(this).attr("class")]["over"]);
+        })
+
+      $("img").mouseout(  
+        function() {
+          $(this).attr("src", imgDict[$(this).attr("class")]["out"]);
+        }
+      )
+    </script>
+  </body>
+</html>

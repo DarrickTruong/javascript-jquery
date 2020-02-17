@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+
+        $(function () {
+            $(".datepicker").datepicker();
+            $("#form1").submit(function(event) {
+                event.preventDefault();
+                if( $("#userName").val() == ""){
+                    $("#error").append("<p style='color: red; font-size:.5em'> Your name can't be blank!</p>")
+                } else {
+                alert("Thanks " + $('#userName').val() + "! Your cruise leaves on " + $("#startDate").val() + " and returns on " + $("#endDate").val() + "!");
+                }
+                return false;
+            })
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <h1> Welcome to the jquery Date Validations!
+            <div id="error"></p>
+        <form id="form1">
+            Start Date: <input type="text" class="datepicker" id="startDate">
+            End Date: <input type="text" class="datepicker" id="endDate">
+            Name: <input type="text" id="userName">
+            <input type="submit">
+        </form>
+</body>
+
+</html>

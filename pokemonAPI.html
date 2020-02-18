@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon API</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        function pokedex(info){
+            let output = "";
+            output += "<img src='http://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/" + info.id + ".png'>"
+            output+= "<h1>" + info.name + "</h1>";
+            output+= "<p> Height: " + info.height + "</p>";
+            output+= "<p> Weight: " + info.weight + "</p>";
+            output+= "<p> Species: " + info.species.name + "</p>";
+            output+= "Types: <ul>" 
+            for (let i = 0 ; i < info.types.length; i++){
+            output+= "<li>"+ info.types[i].type.name + "</li>"
+            }
+            output+="</ul>"
+            output+= "Moves: <ul>" 
+            for (let i = 0 ; i < info.moves.length; i++){
+            output+= "<li>"+ info.moves[i].move.name + "</li>"
+            }
+            output+="</ul>"
+            console.log(output);
+            $('.pokedex').html(output);
+        }
+        $(function () {
+            let output = ""
+            for (let i = 1; i <= 700; i++) {
+                output += "<img id='" +i+ "' src='http://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/" + i + ".png'>";
+            }
+            $("#pokemon").html(output);
+            // document.getElementById('pokemon').innerHTML = output;
+
+            $('img').click(function(){
+                $.get("https://pokeapi.co/api/v2/pokemon/"+$(this).attr('id'), function(res){
+                    console.log(res);
+                    pokedex(res);
+                }, 'json')
+            })
+        })
+    </script>
+    <style>
+        .border {
+            border: 5px solid red;
+        }
+        .wrapper {
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #pokemon {
+            display: inline-block;
+            height: 600px;
+            overflow: scroll;
+            width: 65%;
+        }
+
+        .pokedex {
+            display: inline-block;
+            padding: 10px 50px;
+            width: 20%;
+            height: 580px;
+            overflow: scroll;
+            background-color: silver;
+        }
+        .pokedex img, h1 {
+            display: block;
+            margin: 0 auto; 
+            width: 80%;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <h1 style="padding-left:0 0 0 200px;"> Pokemon Rolodex</h1>
+    <div class="wrapper">
+        <div id="pokemon"></div>
+        <div class="pokedex"></div>
+    </div>
+</body>
+
+</html>
